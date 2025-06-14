@@ -1,11 +1,10 @@
-FROM node:16
+FROM mysql:latest
 
-WORKDIR /app
+# Definir variables de entorno 
+ENV MYSQL_ROOT_PASSWORD rootpassword
+ENV MYSQL_DATABASE gestion_financiera
+ENV MYSQL_USER usuario
+ENV MYSQL_PASSWORD password
 
-COPY package.json package-lock.json ./
-RUN npm install
-
-COPY . .
-
-EXPOSE 3000
-CMD ["node", "index.js"]
+# Exponer el puerto predeterminado de MySQL
+EXPOSE 33066
