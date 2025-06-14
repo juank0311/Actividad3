@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: database
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: database
+  template:
+    metadata:
+      labels:
+        app: database
+    spec:
+      containers:
+      - name: mysql
+        image: 804894926033.dkr.ecr.us-east-1.amazonaws.com/mi-base-datos:latest
+        env:
+        - name: MYSQL_ROOT_PASSWORD
+          value: "rootpassword"
+        - name: MYSQL_DATABASE
+          value: "gestion_financiera"
+        - name: MYSQL_USER
+          value: "usuario"
+        - name: MYSQL_PASSWORD
+          value: "password"
+        ports:
+        - containerPort: 33066
